@@ -1,6 +1,6 @@
 fun main(){
     val sumOperation: Double = 150_000.0
-    var commission = calculateCommission(cardType = "Mastercard", sumPay = sumOperation)
+    var commission = calculateCommission(cardType = "Mastercard",prevPayCurMonth = 80_000.0, sumPay = sumOperation)
     println(if (commission != (-1.0)) {
         "Комиссия составит $commission руб."
     } else "Операция невозможна")
@@ -14,7 +14,13 @@ fun calculateCommission(cardType: String = "Мир", prevPayCurMonth: Double = 0
     val visaCommissionMin = 35.0
     val totalPayInMonth = prevPayCurMonth + sumPay
     val commission: Double = when (cardType) {
-        "Mastercard" -> if (totalPayInMonth > mounthLimit) (totalPayInMonth - mounthLimit) * masterCommission + masterCommissionAlways else 0.0
+        "Mastercard" ->
+            if (prevPayCurMonth > mounthLimit)
+                sumPay * masterCommission + masterCommissionAlways
+            else if (totalPayInMonth > mounthLimit)
+                (totalPayInMonth - mounthLimit) * masterCommission + masterCommissionAlways
+            else 0.0
+
         "Visa" -> if ((sumPay * visaCommission) < visaCommissionMin) visaCommissionMin else sumPay * visaCommission
         else -> 0.0
     }
