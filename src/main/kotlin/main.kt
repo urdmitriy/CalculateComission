@@ -1,24 +1,24 @@
 fun main(){
-    val comissionTax = 0.75
-    val comissionMin = 35
-    val amount = 3_000
-
-    val commission = amount * comissionTax / 100
-    val totalCommission = if (commission < comissionMin) comissionMin else commission
-    println("Комиссия составит $totalCommission")
+    val sumOperation: Double = 150_000.0
+    var commission = calculateCommission(cardType = "Mastercard", sumPay = sumOperation)
+    println(if (commission != (-1.0)) {
+        "Комиссия составит $commission руб."
+    } else "Операция невозможна")
 }
 
-fun calculateCommission(cardType: String = "Мир", prevPay: Double = 0.0, sumPay: Double): Double {
+fun calculateCommission(cardType: String = "Мир", prevPayCurMonth: Double = 0.0, sumPay: Double): Double {
     val mounthLimit = 75_000
-    val masterCommission = 0.0006
+    val masterCommission = 0.006
     val masterCommissionAlways = 20.0
     val visaCommission = 0.0075
     val visaCommissionMin = 35.0
-    return when (cardType) {
-        "Mastercard" -> if (prevPay > mounthLimit) sumPay * masterCommission + masterCommissionAlways else 0.0
+    val totalPayInMonth = prevPayCurMonth + sumPay
+    val commission: Double = when (cardType) {
+        "Mastercard" -> if (totalPayInMonth > mounthLimit) (totalPayInMonth - mounthLimit) * masterCommission + masterCommissionAlways else 0.0
         "Visa" -> if ((sumPay * visaCommission) < visaCommissionMin) visaCommissionMin else sumPay * visaCommission
         else -> 0.0
     }
+    return if (overPayDetect(sumPay, totalPayInMonth)) (-1.0) else commission
 }
 
 fun overPayDetect(payDayTotal: Double, payMonthTotal: Double): Boolean {
