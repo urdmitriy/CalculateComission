@@ -11,7 +11,7 @@ fun calculateCommission(cardType: String = "Мир", prevPayCurMonth: Double = 0
     val masterCommission = 0.006
     val masterCommissionAlways = 20.0
     val visaCommission = 0.0075
-    val visaCommissionMin = 35.0
+    val visaCommissionMin = 35
     val totalPayInMonth = prevPayCurMonth + sumPay
     val commission: Double = when (cardType) {
         "Mastercard" ->
