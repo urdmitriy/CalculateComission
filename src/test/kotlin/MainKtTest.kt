@@ -1,8 +1,11 @@
+import org.junit.Test
+
 import org.junit.Assert.*
 
 class MainKtTest {
 
-    @org.junit.Test
+    @Test
     fun overPayDetect() {
+        assertEquals(1,1)
     }
 }
