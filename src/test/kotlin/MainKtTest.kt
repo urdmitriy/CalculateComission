@@ -45,4 +45,9 @@ class MainKtTest {
     fun calculateCommission_visa_free() {
         assertEquals(calculateCommission("Visa", 200.0,100.0), 35.0, maxDelta)
     }
+
+    @Test
+    fun calculateCommission_default() {
+        assertEquals(calculateCommission(sumPay = 100.0), 0.0, maxDelta)
+    }
 }
