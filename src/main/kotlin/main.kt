@@ -1,9 +1,9 @@
 fun main(){
-    val sumOperation: Double = 150_000.0
-    var commission = calculateCommission(cardType = "Mastercard",prevPayCurMonth = 80_000.0, sumPay = sumOperation)
-    println(if (commission != (-1.0)) {
-        "Комиссия составит $commission руб."
-    } else "Операция невозможна")
+//    val sumOperation: Double = 150_000.0
+//    var commission = calculateCommission(cardType = "Mastercard",prevPayCurMonth = 80_000.0, sumPay = sumOperation)
+//    println(if (commission != (-1.0)) {
+//        "Комиссия составит $commission руб."
+//    } else "Операция невозможна")
 }
 
 fun calculateCommission(cardType: String = "Мир", prevPayCurMonth: Double = 0.0, sumPay: Double): Double {
