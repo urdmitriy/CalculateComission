@@ -48,6 +48,6 @@ class MainKtTest {
 
     @Test
     fun calculateCommission_default() {
-        assertEquals(calculateCommission(sumPay = 100.0), 0.0, maxDelta)
+        assertEquals(calculateCommission(sumPay = 100.0), 10.0, maxDelta)
     }
 }
